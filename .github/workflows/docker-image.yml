@@ -54,7 +54,6 @@ jobs:
     - name: checking
       run: |
         pwd 
-        ls
     # - name: Update Image Tag Values
     #   run: |
     #     chart_dir="helm"
