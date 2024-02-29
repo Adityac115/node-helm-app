@@ -60,8 +60,8 @@ jobs:
       run: |
          git clone https://github.com/Adityac115/helm-charts.git
          # ls | grep helm-charts
-         cd helm-charts
-         chart_dir="node-charts"
+         # cd helm-charts
+         chart_dir="helm-charts/node-charts"
          new_image_tag=${{ github.sha }}
          sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
          
