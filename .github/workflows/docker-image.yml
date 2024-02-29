@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
         ref: 'master'
         token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
     - name: Update Image Tag Values
       run: |
          git clone https://github.com/Adityac115/helm-charts.git
-         ls
+         ls | grep helm-charts
          # cd helm-charts
          # chart_dir="node-charts"
          # new_image_tag=${{ github.sha }}
