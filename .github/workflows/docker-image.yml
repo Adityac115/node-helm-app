@@ -66,5 +66,9 @@ jobs:
         git clone https://github.com/Adityac115/helm-charts.git
         git config --global user.name 'Adityac115'
         git config --global user.email 'adityakushwahaiffco@gmail.com'
-        cd helm-charts
-        git config -l
+        cd helm-chart
+        chart_dir="node-charts"
+        new_image_tag=${{ github.sha }}
+        sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+        pwd
+        cat node-charts/values.yaml
