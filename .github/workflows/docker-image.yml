@@ -62,19 +62,19 @@ jobs:
     - name: Update Image Tag Values
       run: |
          git clone https://github.com/Adityac115/helm-charts.git
-         ls | grep helm-charts
-         # cd helm-charts
-         # chart_dir="node-charts"
-         # new_image_tag=${{ github.sha }}
-         # sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+         # ls | grep helm-charts
+         cd helm-charts
+         chart_dir="node-charts"
+         new_image_tag=${{ github.sha }}
+         sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
 
          
-    # - name: Commit the changes made
-    #   run: | 
-    #     cd helm-charts
-    #     git config --global user.name 'Adityac115'
-    #     git config --global user.email 'adityakushwahaiffco@gmail.com'
-    #     git add .
-    #     git commit -m "version updated"
-    #     git push origin master
+    - name: Commit the changes made
+      run: | 
+        cd helm-charts
+        git config --global user.name 'Adityac115'
+        git config --global user.email 'adityakushwahaiffco@gmail.com'
+        git add .
+        git commit -m "version updated"
+        git push origin master
        
