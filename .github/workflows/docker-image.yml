@@ -46,18 +46,24 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+        
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
        context: .
        push: true
        tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:${{ github.sha }} ,${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
+
+       
     - name: Check out code
       uses: actions/checkout@v3
       with:
-        repository: https://github.com/Adityac115/helm-charts.git
+        repository: Adityac115/helm-charts
         ref: 'master'
         token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+
+        
     - name: Update Image Tag Values
       run: |
          # git clone https://github.com/Adityac115/helm-charts.git
@@ -65,6 +71,8 @@ jobs:
          chart_dir="node-charts"
          new_image_tag=${{ github.sha }}
          sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+
+         
     - name: Commit the changes made
       run: | 
         cd helm-charts
