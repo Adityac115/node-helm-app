@@ -20,6 +20,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     # - name: Docker meta
+    # - name: Docker meta
     #   id: meta
     #   uses: docker/metadata-action@v5
     #   with:
@@ -51,12 +52,15 @@ jobs:
        context: .
        push: true
        tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-app:${{ github.sha }} ,${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
-    - name: checking
-      run: |
-        pwd 
+    - name: Check out code
+      uses: actions/checkout@v3
+      with:
+        repository: https://github.com/Adityac115/helm-charts.git
+        ref: 'master'
+        token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
     - name: Update Image Tag Values
       run: |
-         git clone https://github.com/Adityac115/helm-charts.git
+         # git clone https://github.com/Adityac115/helm-charts.git
          cd helm-charts
          chart_dir="node-charts"
          new_image_tag=${{ github.sha }}
