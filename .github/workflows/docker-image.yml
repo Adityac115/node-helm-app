@@ -54,21 +54,18 @@ jobs:
     - name: checking
       run: |
         pwd 
-    # - name: Update Image Tag Values
-    #   run: |
-    #     chart_dir="helm"
-    #     new_image_tag=${{ github.sha }}
-
-    #     # Update the values.yaml file with the new image tag
-    #     sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+    - name: Update Image Tag Values
+      run: |
+         git clone https://github.com/Adityac115/helm-charts.git
+         cd helm-charts
+         chart_dir="node-charts"
+         new_image_tag=${{ github.sha }}
+         sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
     - name: Commit the changes made
       run: | 
-        git clone https://github.com/Adityac115/helm-charts.git
+        pwd
         git config --global user.name 'Adityac115'
         git config --global user.email 'adityakushwahaiffco@gmail.com'
-        cd helm-charts
-        chart_dir="node-charts"
-        new_image_tag=${{ github.sha }}
-        sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
-        pwd
-        cat node-charts/values.yaml
+        git remote -v
+        git status
+       
