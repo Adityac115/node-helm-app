@@ -71,7 +71,7 @@ jobs:
         API_TOKEN_GITHUB: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
       with:
           # GitHub Action output files
-          source-directory: helm-charts/node-charts
+          source-directory: helm-charts/
           destination-github-username: Adityac115
           destination-repository-name: helm-charts
           user-email: adityakushwahaiffco@gmail.com
