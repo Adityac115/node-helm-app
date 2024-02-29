@@ -67,4 +67,4 @@ jobs:
         git config --global user.name 'Adityac115'
         git config --global user.email 'adityakushwahaiffco@gmail.com'
         cd helm-charts
-        git remote -v
+        git config -l
