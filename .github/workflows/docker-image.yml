@@ -19,9 +19,6 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-      with:
-        ref: 'master'
-        token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
     # - name: Docker meta
     # - name: Docker meta
     #   id: meta
@@ -67,14 +64,28 @@ jobs:
          chart_dir="node-charts"
          new_image_tag=${{ github.sha }}
          sed -i "s/^  tag: .*/  tag: $new_image_tag/" "$chart_dir/values.yaml"
+         
+    - name: Deploy to external repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+      with:
+          # GitHub Action output files
+          source-directory: helm-charts/node-charts
+          destination-github-username: Adityac115
+          destination-repository-name: helm-charts
+          user-email: adityakushwahaiffco@gmail.com
+          # It defaults to `main`
+          target-branch: "master"
+
 
          
-    - name: Commit the changes made
-      run: | 
-        cd helm-charts
-        git config --global user.name 'Adityac115'
-        git config --global user.email 'adityakushwahaiffco@gmail.com'
-        git add .
-        git commit -m "version updated"
-        git push origin master
+    # - name: Commit the changes made
+    #   run: | 
+    #     # cd helm-charts
+    #     # git config --global user.name 'Adityac115'
+    #     # git config --global user.email 'adityakushwahaiffco@gmail.com'
+    #     # git add .
+    #     # git commit -m "version updated"
+    #     # git push origin master
        
