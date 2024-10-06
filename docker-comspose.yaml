@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  indigobackend:
+    image: node-app:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: node-app
+    port:
+     - 3000:3000
+
