@@ -1,17 +1,18 @@
-FROM node:10.15.1-alpine as builder
+FROM node:20-slim
 
-WORKDIR /opt/src
 
-COPY package.json .
-COPY package-lock.json .
-RUN npm install
+WORKDIR /app
 
-FROM node:10.15.1-alpine as runner
+COPY package*.json .
 
-WORKDIR /opt/run
+COPY . .
+	
+RUN npm install 
 
-COPY --from=builder /opt/src/node_modules ./node_modules
-COPY package.json .
-COPY app.js .
+#EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node","app.js"]
+
+
+
+
