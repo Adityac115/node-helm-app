@@ -34,3 +34,6 @@ spec:
       targetPort: 3000
 #      NodePort: 33060
   type: NodePort
+
+
+#demo
